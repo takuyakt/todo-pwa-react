@@ -7,7 +7,22 @@ import AuthProvider, { AuthContext } from "../providers/AuthProvider";
 const Dashboard = () => {
     const currentUser = useContext(AuthContext);
     const [inputName, setInputName ] = useState("");
+    const [todos, setTodos] = useState([]);
     console.log(inputName);
+
+    useEffect(() => {
+        //Todoを取得
+        fetch();
+    } ,[currentUser]);
+
+    const fetch = async() => {
+        if( dig(currentUser,'currentUser', 'uid' )){
+            const data = await Api.initGet(currentUser.currentUser.uid)
+            await setTodos(data);
+            console.log(todos);
+        }
+    }
+
     const formRender = () => {
         let dom
         if( dig(currentUser,'currentUser', 'uid' ) ){
