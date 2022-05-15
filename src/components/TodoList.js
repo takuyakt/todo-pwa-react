@@ -5,10 +5,14 @@ import dig from 'object-dig';
 import AuthProvider, { AuthContext } from "../providers/AuthProvider";
 
 const ToDoList = (props) => {
+    const deleteHandle = async (id) => {
+        await Api.toDoDelte(id);
+        props.fetch();
+    }
 
     const todoList = props.todos.map((todo) => {
         return(
-            <li key={todo.id}>{todo.content}</li>
+            <li key={todo.id}>{todo.content}<button type="button" onClick={() => deleteHandle(todo.id)}>削除</button></li>
         );
     });
 

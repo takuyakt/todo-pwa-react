@@ -28,3 +28,7 @@ export const addTodo = (content, uid) => {
     createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
 }
+
+export const toDoDelte = (id) => {
+    db.collection("todo").doc(id).delete();
+}
